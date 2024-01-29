@@ -10,4 +10,5 @@ echo ".web/" > .gitignore
 echo "__pycache__/" >> .gitignore
 echo ".venv/" >> .gitignore
 echo ".env" >> .gitignore
+echo ".ruff_cache" >> .gitignore
 deactivate

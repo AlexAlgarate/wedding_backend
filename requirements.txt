@@ -1,5 +1,6 @@
+reflex
 black
 isort
-reflex
-flake8
+ruff
+
 python-dotenv
