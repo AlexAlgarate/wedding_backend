@@ -1,9 +1,16 @@
 import reflex as rx
 
-from wedding.styles import Color, Font, FontWeight
+from wedding.styles import style
 
 
 def title_header() -> rx.Component:
+    """
+    Creates a flex container for the title header.
+
+    Returns:
+        rx.Component: The title header component.
+    """
+
     return rx.flex(
         _title("¡Nos"),
         _title("casamos!"),
@@ -14,12 +21,18 @@ def title_header() -> rx.Component:
 
 
 def _title(text: str) -> rx.Component:
+    """
+    Creates a heading component with the specified text and style.
+
+    Args:
+        text (str): The text for the heading.
+
+    Returns:
+        rx.Component: The heading component.
+    """
+
     return rx.heading(
         text,
         size="2xl",
-        font_family=Font.TITLE.value,
-        font_weight=FontWeight.MEDIUM.value,
-        font_style="normal",
-        line_height="normal",
-        color=Color.TITLE.value,
+        style=style.TEXT_HEADER_STYLE,
     )
