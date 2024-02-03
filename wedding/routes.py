@@ -10,7 +10,7 @@ def icon_route(filename: str, png: bool = False) -> str:
 
 class Route(Enum):
     INDEX = "/"
-    CONTACT = "/contact"
+    FORM = "/form"
 
 
 class FileRoutes(Enum):
