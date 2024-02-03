@@ -4,6 +4,6 @@ rm -fr public
 isort wedding/
 black wedding/
 reflex init
-reflex export --frontend-only
+API_URL=https://wedding-backend.up.railway.app reflex export --frontend-only
 unzip frontend.zip -d public
 rm -f frontend.zip
