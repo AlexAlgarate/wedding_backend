@@ -10,7 +10,9 @@ from wedding.routes import FileRoutes, Route
 from wedding.styles import style
 
 
-@rx.page(route=Route.FORM.value, title=utils.title_main, description=utils.description_main)
+@rx.page(
+    route=Route.FORM.value, title=utils.title_main, description=utils.description_main
+)
 def form_wedding() -> rx.Component:
     return rx.box(
         rx.script("document.documentElement.lang='es'"),
