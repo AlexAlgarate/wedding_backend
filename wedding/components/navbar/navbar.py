@@ -25,6 +25,11 @@ def navbar() -> rx.Component:
         rx.spacer(),
         initials_navbar(),
         rx.spacer(),
+        rx.link(
+            rx.button("form"),
+            href="/form",
+            is_external=False,
+        ),
         menu_icon(tag="bell"),
         style=style.NAVBAR_STYLE,
         class_name="navbar_wedding",

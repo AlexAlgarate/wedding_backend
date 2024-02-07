@@ -1,15 +1,16 @@
+from typing import Optional
 import reflex as rx
 
 from wedding import utils
 from wedding.components import (
     card,
     farewell_message,
-    flowers_between_section,
-    lavender_flowers,
     navbar,
 )
-from wedding.routes import FileRoutes, Route
+from wedding.routes import Route
 from wedding.styles import style
+import reflex.components.radix.themes as rdxt
+from reflex import el
 
 
 class FormState(rx.State):
@@ -20,21 +21,18 @@ class FormState(rx.State):
         self.form_data = form_data
 
 
-def form_example():
+def form_example(id: str):
+
     return rx.vstack(
         rx.form(
             rx.vstack(
                 rx.input(
-                    placeholder="First Name",
-                    name="first_name",
+                    placeholder="Numero 1",
+                    id=id,
                 ),
                 rx.input(
-                    placeholder="Last Name",
-                    name="last_name",
-                ),
-                rx.hstack(
-                    rx.checkbox("Checked", name="check"),
-                    rx.switch("Switched", name="switch"),
+                    placeholder="Numero 2",
+                    id="numero2",
                 ),
                 rx.button("Submit", type_="submit"),
             ),
@@ -44,24 +42,27 @@ def form_example():
         rx.divider(),
         rx.heading("Results"),
         rx.text(FormState.form_data.to_string()),
+        rx.cond(
+            id,
+            rx.text("PRRRRRR EL MORENO DE PORTUGALETE", color="red"),
+            rx.text("BUNI ERES UN COMEPOLLAS", color="blue"),
+        ),
+        el.button(
+            "Click me",
+            class_name="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
+        ),
+        el.div("hola caracolap"),
     )
 
 
-@rx.page(
-    route=Route.FORM.value, title=utils.title_main, description=utils.description_main
-)
+@rx.page(route=Route.FORM.value, title=utils.title_main, description=utils.description_main)
 def form_wedding() -> rx.Component:
     return rx.box(
         rx.script("document.documentElement.lang='es'"),
         navbar(),
-        lavender_flowers(image=FileRoutes.IMAGE_LAVENDER_TOP.value),
         rx.vstack(
             rx.flex(
-                card(
-                    form_example(),
-                ),
-                flowers_between_section(),
-                flowers_between_section(),
+                card(form_example("6")),
                 direction="column",
                 gap="16px",
                 align="center",
@@ -71,11 +72,17 @@ def form_wedding() -> rx.Component:
             width="auto",
         ),
         farewell_message(),
-        lavender_flowers(
-            image=FileRoutes.IMAGE_LAVENDER_BOTTOM.value,
-            margin_type=False,
-        ),
         width="100%",
         style=style.BASE_STYLE,
         align_items="center",
     )
+
+
+async def repo() -> str:
+    return "https://github.com/AlexAlgarate/wedding_backend"
+
+
+async def live(user: str) -> bool:
+    if user == "alex":
+        return True
+    return False
