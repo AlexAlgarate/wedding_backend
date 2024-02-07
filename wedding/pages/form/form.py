@@ -1,16 +1,13 @@
 from typing import Optional
-import reflex as rx
 
-from wedding import utils
-from wedding.components import (
-    card,
-    farewell_message,
-    navbar,
-)
-from wedding.routes import Route
-from wedding.styles import style
+import reflex as rx
 import reflex.components.radix.themes as rdxt
 from reflex import el
+
+from wedding import utils
+from wedding.components import card, farewell_message, navbar
+from wedding.routes import Route
+from wedding.styles import style
 
 
 class FormState(rx.State):
@@ -55,7 +52,9 @@ def form_example(id: str):
     )
 
 
-@rx.page(route=Route.FORM.value, title=utils.title_main, description=utils.description_main)
+@rx.page(
+    route=Route.FORM.value, title=utils.title_main, description=utils.description_main
+)
 def form_wedding() -> rx.Component:
     return rx.box(
         rx.script("document.documentElement.lang='es'"),
